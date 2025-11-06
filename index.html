@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cold Services — Centro de Servicios | Bávaro • Punta Cana</title>
+  <meta name="description" content="Cold Services - Servicios eléctricos, refrigeración, plomería, pintura, mantenimiento, instalación y venta de aires en Bávaro y Punta Cana. Reserva cita vía WhatsApp."/>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect rx='20' width='100' height='100' fill='%2300193b'/%3E%3Ctext x='50' y='57' font-size='36' text-anchor='middle' fill='%23a8f0ff' font-family='Arial'%3ECS%3C/text%3E%3C/svg%3E">
+  <style>
+    /* -------------------
+       RESET + BASE
+       ------------------- */
+    *{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#050816;
+      --card:#071032;
+      --accent:#37f0d6;
+      --muted:#9aa6c1;
+      --glass: rgba(255,255,255,0.03);
+      --glass2: rgba(255,255,255,0.02);
+      --glass-border: rgba(55,240,214,0.08);
+      --white: #eaf6ff;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    html,body{height:100%;background:
+      radial-gradient(1200px 400px at 10% 10%, rgba(55,240,214,0.025), transparent 5%),
+      radial-gradient(800px 300px at 90% 90%, rgba(58,99,255,0.02), transparent 10%),
+      var(--bg);
+      color:var(--white);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* -------------------
+       LAYOUT
+       ------------------- */
+    .container{max-width:1200px;margin:2rem auto;padding:1.25rem}
+    header{display:flex;align-items:center;gap:1rem;justify-content:space-between}
+    .brand{display:flex;gap:.75rem;align-items:center}
+    .logo {
+      width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#2fa6ff);
+      display:grid;place-items:center;font-weight:700;color:#052033;box-shadow:0 6px 30px rgba(55,240,214,0.06);
+      transform:rotate(-8deg);
+    }
+    .brand h1{font-size:1.15rem;letter-spacing:0.2px}
+    .brand p{font-size:.82rem;color:var(--muted)}
+
+    nav{display:flex;gap:.75rem;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;font-size:.95rem;padding:.4rem .6rem;border-radius:8px}
+    nav a:hover{color:var(--white);background:var(--glass2)}
+
+    /* -------------------
+       HERO
+       ------------------- */
+    .hero{
+      margin-top:1.25rem;padding:1.5rem;border-radius:16px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      border:1px solid var(--glass-border);display:grid;grid-template-columns:1fr 420px;gap:1.25rem;align-items:stretch;
+      overflow:hidden;
+      backdrop-filter: blur(6px);
+    }
+    .hero-left{padding:1rem}
+    .kicker{color:var(--accent);font-weight:700;margin-bottom:.5rem}
+    .hero-left h2{font-size:1.75rem;line-height:1.05}
+    .hero-left p{color:var(--muted);margin: .75rem 0 1.25rem}
+    .cta-row{display:flex;gap:.6rem;flex-wrap:wrap}
+    .btn{background:linear-gradient(90deg,var(--accent),#7fd1ff);color:#052033;padding:.7rem 1rem;border-radius:12px;font-weight:700;border:none;cursor:pointer;box-shadow:0 8px 30px rgba(55,240,214,0.06)}
+    .btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--white)}
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;margin-top:1rem}
+    .feature{background:var(--glass);padding:.6rem;border-radius:10px;font-size:.88rem;color:var(--muted);display:flex;gap:.6rem;align-items:center}
+
+    /* HERO RIGHT: quick form */
+    .hero-right{padding:1rem;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);border:1px solid rgba(255,255,255,0.02)}
+    label{display:block;font-size:.82rem;color:var(--muted);margin-bottom:.35rem}
+    input,select,textarea,button{width:100%;padding:.6rem;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--white);outline:none}
+    .row{display:flex;gap:.6rem}
+    .row > *{flex:1}
+
+    /* SERVICES */
+    .services{margin-top:1.25rem;display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);border:1px solid rgba(255,255,255,0.02);padding:1rem;border-radius:12px;min-height:120px}
+    .card h3{margin-bottom:.4rem}
+    .card p{color:var(--muted);font-size:.9rem}
+
+    /* CALENDAR & SLOTS */
+    .scheduler{margin-top:1.25rem;display:grid;grid-template-columns:420px 1fr;gap:1rem}
+    .calendar-card{padding:1rem;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);border:1px solid rgba(255,255,255,0.02)}
+    .calendar-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:.6rem}
+    .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:.35rem}
+    .day{padding:.6rem;border-radius:8px;text-align:center;cursor:pointer;color:var(--muted);font-weight:600}
+    .day:hover{background:var(--glass2);color:var(--white)}
+    .day.disabled{opacity:.25;cursor:not-allowed}
+    .day.selected{background:linear-gradient(90deg,var(--accent),#7fd1ff);color:#052033;box-shadow:0 8px 24px rgba(55,240,214,0.06)}
+    .slots{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.8rem}
+    .slot{padding:.45rem .6rem;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.04);cursor:pointer;color:var(--muted)}
+    .slot.selected{background:var(--accent);color:#052033;border:none;box-shadow:0 8px 24px rgba(55,240,214,0.06)}
+
+    /* COMMENTS / FOOTER */
+    .comments{margin-top:1.25rem;display:grid;grid-template-columns:1fr 360px;gap:1rem}
+    .comment-box{padding:1rem;border-radius:12px;background:var(--card);border:1px solid rgba(255,255,255,0.02)}
+    footer{margin-top:1.25rem;padding:1rem;text-align:center;color:var(--muted);font-size:.9rem}
+
+    /* FLOATING WHATSAPP BUTTON */
+    .whats-btn{
+      position:fixed;right:18px;bottom:18px;width:64px;height:64px;border-radius:50%;
+      display:grid;place-items:center;z-index:999;background:linear-gradient(180deg,#25D366,#128C7E);box-shadow:0 10px 30px rgba(18,140,126,0.25);cursor:pointer;
+      border:4px solid rgba(255,255,255,0.04);
+    }
+    .whats-btn svg{width:38px;height:38px;filter:drop-shadow(0 6px 18px rgba(0,0,0,0.35))}
+
+    /* RESPONSIVE */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr}
+      .services{grid-template-columns:repeat(2,1fr)}
+      .scheduler{grid-template-columns:1fr}
+      .comments{grid-template-columns:1fr}
+    }
+    @media (max-width:560px){
+      .services{grid-template-columns:1fr}
+      .features{display:block}
+    }
+
+    /* subtle futuristic animation */
+    .neon {
+      position:relative;
+    }
+    .neon::after{
+      content:"";position:absolute;inset:0;border-radius:12px;
+      box-shadow:0 0 40px rgba(55,240,214,0.03), inset 0 0 80px rgba(63,157,255,0.01);
+      pointer-events:none;
+    }
+
+    /* small helper */
+    .muted {color:var(--muted);font-size:.9rem}
+    .small{font-size:.82rem;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">CS</div>
+        <div>
+          <h1>Cold Services</h1>
+          <p>Servicio técnico — Bávaro • Punta Cana</p>
+        </div>
+      </div>
+      <nav>
+        <a href="#servicios">Servicios</a>
+        <a href="#citas">Citas</a>
+        <a href="#comentarios">Comentarios</a>
+        <a href="#contacto" class="small">+1 (809) 392-7692</a>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero neon" aria-labelledby="hero-title">
+      <div class="hero-left">
+        <div class="kicker">RAPIDEZ • CONFIANZA • TECNOLOGÍA</div>
+        <h2 id="hero-title">Mantenimiento y reparaciones para tu hogar o empresa<br/><span style="color:var(--accent)">Eléctrico — Refrigeración — Plomería — Pintura</span></h2>
+        <p>Ofrecemos instalación, venta e instalación de aires acondicionados, furnituras y servicios integrales. Cobertura: <strong>Bávaro y Punta Cana</strong>.</p>
+
+        <div class="cta-row">
+          <button class="btn" id="book-now">Agendar cita</button>
+          <button class="btn secondary" id="view-services">Ver servicios</button>
+        </div>
+
+        <div class="features" style="margin-top:1rem">
+          <div class="feature">⏱️ Atención rápida 24/7</div>
+          <div class="feature">🛠️ Técnicos certificados</div>
+          <div class="feature">🔒 Garantía en reparaciones</div>
+        </div>
+      </div>
+
+      <aside class="hero-right">
+        <h3 style="margin-bottom:.6rem">Reserva rápida</h3>
+        <form id="quick-book" onsubmit="return false;">
+          <label>Servicio</label>
+          <select id="svc" required>
+            <option value="Electricidad">Electricidad</option>
+            <option value="Refrigeración">Refrigeración</option>
+            <option value="Plomería">Plomería</option>
+            <option value="Pintura">Pintura</option>
+            <option value="Mantenimiento">Mantenimiento general</option>
+            <option value="Instalacion de A/C">Venta & Instalación de A/C</option>
+          </select>
+
+          <div style="height:.6rem"></div>
+          <label>Nombre</label>
+          <input id="qb-name" placeholder="Tu nombre" required>
+
+          <div style="height:.6rem"></div>
+          <label>Teléfono (WhatsApp)</label>
+          <input id="qb-phone" placeholder="+1 809 000 0000" required>
+
+          <div style="height:.6rem"></div>
+          <label>Dirección / Zona</label>
+          <input id="qb-address" placeholder="Ej: Urbanización X, Bávaro" required>
+
+          <div style="height:.6rem"></div>
+          <button class="btn" id="qb-send" style="width:100%;">Enviar por WhatsApp</button>
+        </form>
+      </aside>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="servicios" class="services">
+      <div class="card">
+        <h3>🔌 Servicios Eléctricos</h3>
+        <p>Instalaciones, tableros, reparaciones, iluminación led y automatización básica para hogares y negocios.</p>
+      </div>
+      <div class="card">
+        <h3>❄️ Refrigeración</h3>
+        <p>Venta, instalación, mantenimiento y reparación de aires acondicionados split y centrales.</p>
+      </div>
+      <div class="card">
+        <h3>🚿 Plomería</h3>
+        <p>Fugas, drenajes, sustitución de tuberías y soluciones sanitarias para proyectos residenciales o comerciales.</p>
+      </div>
+      <div class="card">
+        <h3>🎨 Pintura</h3>
+        <p>Acabados residenciales y comerciales, repellos, pintura exterior e interior con materiales de primera.</p>
+      </div>
+      <div class="card">
+        <h3>🛠️ Mantenimiento</h3>
+        <p>Planes periódicos para empresas y apartamentos turísticos: revisiones preventivas y correctivas.</p>
+      </div>
+      <div class="card">
+        <h3>🧰 Instalación de Furnituras</h3>
+        <p>Montaje e instalación profesional de muebles, cocinas empotradas, closets y más.</p>
+      </div>
+    </section>
+
+    <!-- SCHEDULER -->
+    <section id="citas" class="scheduler">
+      <div class="calendar-card">
+        <div class="calendar-header">
+          <strong>Selecciona una fecha</strong>
+          <div>
+            <button id="prev-month" class="small">◀</button>
+            <span id="month-label" class="small" style="padding:0 .6rem"></span>
+            <button id="next-month" class="small">▶</button>
+          </div>
+        </div>
+        <div class="cal-grid small" id="weekday-labels">
+          <!-- Weekday labels injected -->
+        </div>
+        <div class="cal-grid" id="calendar-grid" aria-hidden="false">
+          <!-- Days injected -->
+        </div>
+
+        <div style="margin-top:.8rem">
+          <div class="small muted">Hora disponible</div>
+          <div class="slots" id="time-slots">
+            <!-- slots injected -->
+          </div>
+        </div>
+
+        <div style="margin-top:1rem;display:flex;gap:.6rem">
+          <button class="btn" id="confirm-appointment">Confirmar y enviar por WhatsApp</button>
+          <button class="btn secondary" id="clear-sel">Limpiar</button>
+        </div>
+      </div>
+
+      <div class="calendar-card">
+        <h3>Resumen de cita</h3>
+        <div style="margin-top:.6rem">
+          <label>Servicio</label>
+          <select id="svc-2">
+            <option>Electricidad</option><option>Refrigeración</option><option>Plomería</option><option>Pintura</option><option>Mantenimiento general</option><option>Venta & Instalación de A/C</option>
+          </select>
+        </div>
+
+        <div style="margin-top:.6rem">
+          <label>Nombre</label>
+          <input id="apt-name" placeholder="Tu nombre">
+        </div>
+
+        <div style="margin-top:.6rem">
+          <label>Teléfono</label>
+          <input id="apt-phone" placeholder="+1 809 000 0000">
+        </div>
+
+        <div style="margin-top:.6rem">
+          <label>Dirección / Zona</label>
+          <input id="apt-address" placeholder="Bávaro, Punta Cana, ..." />
+        </div>
+
+        <div style="margin-top:.9rem" class="muted small">
+          Selecciona una fecha en el calendario a la izquierda y luego un horario. Luego pulse <strong>Confirmar y enviar por WhatsApp</strong>.
+        </div>
+      </div>
+    </section>
+
+    <!-- COMMENTS / FEEDBACK -->
+    <section id="comentarios" class="comments">
+      <div class="comment-box">
+        <h3>📬 Buzón de comentarios / solicitudes</h3>
+        <p class="small muted">Envía una opinión, solicitud o detalle de tu trabajo y lo recibiremos por WhatsApp.</p>
+        <div style="margin-top:.75rem">
+          <label>Nombre</label>
+          <input id="fb-name" placeholder="Tu nombre">
+        </div>
+        <div style="margin-top:.6rem">
+          <label>Teléfono</label>
+          <input id="fb-phone" placeholder="+1 809 ...">
+        </div>
+        <div style="margin-top:.6rem">
+          <label>Mensaje</label>
+          <textarea id="fb-message" rows="5" placeholder="Describe tu comentario, problema o solicitud"></textarea>
+        </div>
+        <div style="margin-top:.6rem;display:flex;gap:.6rem">
+          <button class="btn" id="fb-send">Enviar por WhatsApp</button>
+          <button class="btn secondary" id="fb-clear">Limpiar</button>
+        </div>
+      </div>
+
+      <aside style="padding:1rem;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);border:1px solid rgba(255,255,255,0.02)">
+        <h3>Atención rápida</h3>
+        <p class="muted small">Para emergencias técnicas o solicitudes urgentes, pulsa el botón de WhatsApp abajo. Nuestro equipo cubre Bávaro y Punta Cana.</p>
+        <div style="margin-top:1rem">
+          <strong>Horario:</strong>
+          <div class="small muted">Lunes - Domingo: 07:00 - 22:00</div>
+        </div>
+        <div style="margin-top:1rem">
+          <strong>Teléfono:</strong>
+          <div class="small muted">+1 (809) 392-7692</div>
+        </div>
+      </aside>
+    </section>
+
+    <footer id="contacto">
+      © <span id="year"></span> Cold Services — Bávaro & Punta Cana • Diseñado para web • Envíanos un WhatsApp: +1 (809) 392-7692
+    </footer>
+  </div>
+
+  <!-- FLOATING WHATSAPP BUTTON -->
+  <div class="whats-btn" id="whats-float" title="Ayuda por WhatsApp">
+    <!-- WhatsApp SVG -->
+    <svg viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M20.52 3.48A11.9 11.9 0 0012 0C5.37 0 .08 5.29.08 11.92c0 2.1.55 4.17 1.6 6l-1 3.7 3.79-1A11.9 11.9 0 0012 24c6.63 0 11.92-5.29 11.92-11.92 0-3.19-1.24-6.19-3.4-8.6zM12 21.5c-1.35 0-2.67-.33-3.83-.96l-.27-.15-2.26.6.6-2.2-.16-.28A8.15 8.15 0 013.5 11.92 8.48 8.48 0 0112 3.42c4.7 0 8.5 3.8 8.5 8.5S16.7 20 12 20z"/>
+      <path d="M17.12 14.1c-.28-.14-1.66-.82-1.92-.91-.26-.09-.45-.14-.64.14-.19.28-.74.91-.9 1.1-.17.19-.34.21-.62.07-.28-.14-1.2-.44-2.29-1.41-.85-.75-1.43-1.68-1.6-1.96-.17-.28-.02-.43.12-.57.13-.13.28-.33.42-.5.14-.17.19-.28.28-.47.09-.19.05-.36-.02-.5-.07-.14-.64-1.55-.88-2.12-.23-.55-.47-.47-.64-.48-.17 0-.36-.01-.55-.01-.19 0-.5.07-.76.36-.26.3-1 1-1 2.5s1.02 2.9 1.16 3.1c.14.2 2 3.1 4.84 4.28 1.24.53 1.98.85 2.66 1.09.35.12.67.1.92.06.28-.05.86-.35.98-.69.12-.33.12-.62.08-.69-.03-.07-.29-.11-.58-.25z" />
+    </svg>
+  </div>
+
+  <script>
+    // ====== CONFIG ======
+    const WHATS_NUMBER = '18093927692'; // número provisto
+    const WHATS_URL_BASE = 'https://wa.me/' + WHATS_NUMBER + '?text=';
+
+    // ====== UTILS ======
+    function openWhatsWith(message) {
+      const url = WHATS_URL_BASE + encodeURIComponent(message);
+      window.open(url, '_blank');
+    }
+
+    // Year footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Quick Book form (hero)
+    document.getElementById('qb-send').addEventListener('click', () => {
+      const svc = document.getElementById('svc').value;
+      const name = document.getElementById('qb-name').value.trim();
+      const phone = document.getElementById('qb-phone').value.trim();
+      const address = document.getElementById('qb-address').value.trim();
+      if(!name || !phone || !address) {
+        alert('Por favor completa los campos Nombre, Teléfono y Dirección.');
+        return;
+      }
+      const msg = `*Solicitud de servicio*%0AEmpresa: Cold Services%0AServicio: ${svc}%0ANombre: ${name}%0ATeléfono: ${phone}%0ADirección: ${address}%0ARegión: Bávaro / Punta Cana%0A*Nota:* Indica si es URGENTE.`;
+      openWhatsWith(msg);
+    });
+
+    // Floating whatsapp
+    document.getElementById('whats-float').addEventListener('click', () => {
+      const msg = `Hola Cold Services 👋%0AQuisiera asistencia / información sobre sus servicios en Bávaro / Punta Cana.`;
+      openWhatsWith(msg);
+    });
+
+    // Feedback form
+    document.getElementById('fb-send').addEventListener('click', () => {
+      const name = document.getElementById('fb-name').value.trim() || 'Sin nombre';
+      const phone = document.getElementById('fb-phone').value.trim() || 'No proporcionado';
+      const message = document.getElementById('fb-message').value.trim();
+      if(!message){ alert('Escribe tu mensaje antes de enviar.'); return; }
+      const msg = `*Buzón - Cold Services*%0ANombre: ${name}%0ATeléfono: ${phone}%0AMensaje: ${message}`;
+      openWhatsWith(msg);
+    });
+    document.getElementById('fb-clear').addEventListener('click', ()=> {
+      document.getElementById('fb-name').value='';
+      document.getElementById('fb-phone').value='';
+      document.getElementById('fb-message').value='';
+    });
+
+    // ====== SIMPLE CALENDAR LOGIC ======
+    const wdShort = ['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'];
+    const weekdayLabels = document.getElementById('weekday-labels');
+    wdShort.forEach(d => {
+      const el = document.createElement('div'); el.className='small muted'; el.style.textAlign='center';
+      el.textContent = d; weekdayLabels.appendChild(el);
+    });
+
+    const calendarGrid = document.getElementById('calendar-grid');
+    const monthLabel = document.getElementById('month-label');
+    let today = new Date();
+    // normalize to local midnight
+    today.setHours(0,0,0,0);
+    let viewDate = new Date(today.getFullYear(), today.getMonth(), 1);
+    let selectedDate = null;
+    let selectedSlot = null;
+
+    function renderCalendar() {
+      calendarGrid.innerHTML = '';
+      const year = viewDate.getFullYear(), month = viewDate.getMonth();
+      monthLabel.textContent = viewDate.toLocaleString('es-ES', {month:'long', year:'numeric'});
+      // first day of month (JS: 0=Sunday) -> we want Monday-first
+      const firstDay = new Date(year, month, 1);
+      const startDay = (firstDay.getDay() + 6) % 7; // make Monday=0
+      const daysInMonth = new Date(year, month+1, 0).getDate();
+      // fill blanks
+      for(let i=0;i<startDay;i++){
+        const el = document.createElement('div'); el.className='day disabled'; calendarGrid.appendChild(el);
+      }
+      for(let d=1; d<=daysInMonth; d++){
+        const dt = new Date(year, month, d);
+        const el = document.createElement('div');
+        el.className='day';
+        el.textContent = d;
+        // disable past days
+        if(dt < today) { el.classList.add('disabled'); }
+        el.addEventListener('click', () => {
+          if(el.classList.contains('disabled')) return;
+          selectedDate = dt;
+          document.querySelectorAll('.day').forEach(x=>x.classList.remove('selected'));
+          el.classList.add('selected');
+          renderSlotsForDate(dt);
+        });
+        calendarGrid.appendChild(el);
+      }
+    }
+
+    document.getElementById('prev-month').addEventListener('click', () => {
+      viewDate = new Date(viewDate.getFullYear(), viewDate.getMonth()-1, 1); renderCalendar();
+    });
+    document.getElementById('next-month').addEventListener('click', () => {
+      viewDate = new Date(viewDate.getFullYear(), viewDate.getMonth()+1, 1); renderCalendar();
+    });
+
+    // TIME SLOTS generation
+    const slotContainer = document.getElementById('time-slots');
+    function generateTimeSlots() {
+      // sample slots (can be customized)
+      const slots = ['08:00','09:30','11:00','13:00','14:30','16:00','18:00','19:30'];
+      return slots;
+    }
+    function renderSlotsForDate(date) {
+      slotContainer.innerHTML = '';
+      selectedSlot = null;
+      const slots = generateTimeSlots();
+      slots.forEach(time => {
+        const btn = document.createElement('button');
+        btn.className='slot';
+        btn.textContent = time;
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.slot').forEach(s=>s.classList.remove('selected'));
+          btn.classList.add('selected');
+          selectedSlot = time;
+        });
+        slotContainer.appendChild(btn);
+      });
+    }
+
+    // Confirm appointment -> create WhatsApp message using data from inputs
+    document.getElementById('confirm-appointment').addEventListener('click', () => {
+      const name = document.getElementById('apt-name').value.trim() || 'Sin nombre';
+      const phone = document.getElementById('apt-phone').value.trim() || 'No proporcionado';
+      const address = document.getElementById('apt-address').value.trim() || 'No proporcionado';
+      const svc = document.getElementById('svc-2').value;
+      if(!selectedDate || !selectedSlot) { alert('Selecciona una fecha y una hora disponibles en el calendario.'); return; }
+      const dateText = selectedDate.toLocaleDateString('es-ES', {weekday:'short', day:'2-digit', month:'short', year:'numeric'});
+      const msg = `*Reserva de cita*%0AEmpresa: Cold Services%0AServicio: ${svc}%0AFecha: ${dateText}%0AHora: ${selectedSlot}%0ANombre: ${name}%0ATeléfono: ${phone}%0ADirección: ${address}%0AArea: Bávaro / Punta Cana`;
+      openWhatsWith(msg);
+    });
+
+    // Clear selection
+    document.getElementById('clear-sel').addEventListener('click', ()=> {
+      selectedDate = null; selectedSlot = null;
+      document.querySelectorAll('.day').forEach(x=>x.classList.remove('selected'));
+      document.querySelectorAll('.slot').forEach(x=>x.classList.remove('selected'));
+    });
+
+    // initial render
+    renderCalendar();
+
+    // LINK: view services and book now actions
+    document.getElementById('view-services').addEventListener('click', ()=> {
+      document.getElementById('servicios').scrollIntoView({behavior:'smooth'});
+    });
+    document.getElementById('book-now').addEventListener('click', ()=> {
+      document.getElementById('citas').scrollIntoView({behavior:'smooth'});
+    });
+
+    // small accessibility: pressing Enter on quick form's phone triggers send
+    ['qb-name','qb-phone','qb-address'].forEach(id=>{
+      document.getElementById(id).addEventListener('keydown', (e)=>{
+        if(e.key === 'Enter'){ document.getElementById('qb-send').click(); e.preventDefault(); }
+      });
+    });
+
+    // OPTIONAL: preselect today slot if clicking today
+    // (already handled by selecting day in calendar)
+  </script>
+</body>
+</html>
